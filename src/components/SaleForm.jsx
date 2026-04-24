@@ -47,7 +47,7 @@ export default function SaleForm({ refresh }) {
       <input type="number" name="quantity" placeholder="Qty" onChange={handleChange} value={form.quantity} />
       <input type="text" name="note" placeholder="Note" onChange={handleChange} value={form.note} />
 
-      <button>Add Expense</button>
+      <button>Add Sale</button>
     </form>
   );
 }

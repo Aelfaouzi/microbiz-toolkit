@@ -1,5 +1,25 @@
 {
-  "expenses": [],
-  "sales": [],
+  "expenses": [
+    {
+      "date": "2026-04-24",
+      "itemName": "nunchunck",
+      "price": 20,
+      "quantity": 2,
+      "note": " for Akram",
+      "total": 40,
+      "id": "dWEz4haa3GE"
+    }
+  ],
+  "sales": [
+    {
+      "date": "2026-04-24",
+      "itemName": "bjelaba",
+      "price": 30,
+      "quantity": 2,
+      "note": "whole sale",
+      "total": 60,
+      "id": "9L8xw4ttrcg"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
