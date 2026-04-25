@@ -7,7 +7,7 @@ const currency = (v) =>
     Number(v) || 0
   );
 
-export default function ExpenseTable({ expenses = [], refresh }) {
+export default function ExpenseTable({ expenses = [], refresh, onEdit }) {
   const handleDelete = async (id) => {
     if (!id) return;
     const ok = confirm("Delete this expense? This action cannot be undone.");
@@ -53,11 +53,14 @@ export default function ExpenseTable({ expenses = [], refresh }) {
               <td>{e.quantity}</td>
               <td style={{ fontWeight: 600 }}>{currency(e.total)}</td>
               <td>{e.note}</td>
-              <td>
-                <button onClick={() => handleDelete(e.id)} style={{ color: "#b91c1c" }}>
-                  Delete
-                </button>
-              </td>
+                <td>
+                  <button onClick={() => onEdit && onEdit(e)} style={{ marginRight: 8 }}>
+                    Edit
+                  </button>
+                  <button onClick={() => handleDelete(e.id)} style={{ color: "#aa1a1aff" }}>
+                    Delete
+                  </button>
+                </td>
             </tr>
           ))}
         </tbody>

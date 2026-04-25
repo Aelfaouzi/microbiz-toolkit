@@ -7,7 +7,7 @@ const currency = (v) =>
     Number(v) || 0
   );
 
-export default function SaleTable({ sales = [], refresh } ) {
+export default function SaleTable({ sales = [], refresh, onEdit } ) {
   const totalQty = sales.reduce((s, it) => s + (Number(it.quantity) || 0), 0);
   const totalAmount = sales.reduce((s, it) => s + (Number(it.total) || 0), 0);
 
@@ -57,7 +57,10 @@ export default function SaleTable({ sales = [], refresh } ) {
               <td style={{ fontWeight: 600 }}>{currency(s.total)}</td>
               <td>{s.note}</td>
               <td>
-                <button onClick={() => handleDelete(s.id)} style={{ color: "#b91c1c" }}>
+                <button onClick={() => onEdit && onEdit(s)} style={{ marginRight: 8 }}>
+                  Edit
+                </button>
+                <button onClick={() => handleDelete(s.id)} style={{ color: "#aa1a1aff" }}>
                   Delete
                 </button>
               </td>
