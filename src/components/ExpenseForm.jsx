@@ -60,21 +60,21 @@ export default function ExpenseForm({ refresh, initialData = null, onClose }) {
   const isEditing = initialData && initialData.id;
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>{isEditing ? "Edit Expense" : "Add Expense"}</h3>
+    <form onSubmit={handleSubmit} className="bg-white p-4  text-black rounded shadow">
+      <h3 className="text-lg font-medium mb-3">{isEditing ? "Edit Expense" : "Add Expense"}</h3>
 
-      <input type="date" name="date" onChange={handleChange} value={form.date} />
-      <input type="text" name="itemName" placeholder="Item" onChange={handleChange} value={form.itemName} />
-      <input type="number" name="price" placeholder="Price" onChange={handleChange} value={form.price} />
-      <input type="number" name="quantity" placeholder="Qty" onChange={handleChange} value={form.quantity} />
-      <input type="text" name="note" placeholder="Note" onChange={handleChange} value={form.note} />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <input className="border px-2 py-2 rounded" type="date" name="date" onChange={handleChange} value={form.date} />
+        <input className="border px-2 py-2 rounded" type="text" name="itemName" placeholder="Item" onChange={handleChange} value={form.itemName} />
+        <input className="border px-2 py-2 rounded" type="number" name="price" placeholder="Price" onChange={handleChange} value={form.price} />
+        <input className="border px-2 py-2 rounded" type="number" name="quantity" placeholder="Qty" onChange={handleChange} value={form.quantity} />
+        <input className="border px-2 py-2 rounded col-span-2" type="text" name="note" placeholder="Note" onChange={handleChange} value={form.note} />
+      </div>
 
-      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-        <button type="submit">{isEditing ? "Save" : "Add Expense"}</button>
+      <div className="flex items-center gap-2 mt-3">
+        <button type="submit" className="bg-slate-900 text-white px-3 py-2 rounded">{isEditing ? "Save" : "Add Expense"}</button>
         {isEditing && (
-          <button type="button" onClick={() => { setForm({ date: "", itemName: "", price: "", quantity: "", note: "" }); if (typeof onClose === "function") onClose(); }}>
-            Cancel
-          </button>
+          <button type="button" onClick={() => { setForm({ date: "", itemName: "", price: "", quantity: "", note: "" }); if (typeof onClose === "function") onClose(); }} className="px-3 py-2 rounded border">Cancel</button>
         )}
       </div>
     </form>
