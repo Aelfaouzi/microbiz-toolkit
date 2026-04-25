@@ -12,6 +12,7 @@ export const addExpense = (data) => API.post("/expenses", data);
 export const getSales = () => API.get("/sales");
 export const addSale = (data) => API.post("/sales", data);
 export const deleteSale = (id) => API.delete(`/sales/${id}`);
+export const updateSale = (id, data) => API.put(`/sales/${id}`, data);
 
 // Inventory
 export const getInventory = () => API.get("/inventory");
@@ -31,4 +32,5 @@ export const addEmployee = (data) => API.post("/employees", data);
 
 // Delete endpoints
 export const deleteExpense = (id) => API.delete(`/expenses/${id}`);
+export const updateExpense = (id, data) => API.put(`/expenses/${id}`, data);
 

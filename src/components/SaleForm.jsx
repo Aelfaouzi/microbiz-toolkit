@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { addSale} from "../services/api";
+import { useEffect, useState } from "react";
+import { addSale, updateSale } from "../services/api";
 
-export default function SaleForm({ refresh }) {
+export default function SaleForm({ refresh, initialData = null, onClose }) {
   const [form, setForm] = useState({
     date: "",
     itemName: "",
@@ -9,6 +9,19 @@ export default function SaleForm({ refresh }) {
     quantity: "",
     note: "",
   });
+
+  // when initialData changes, populate the form for editing
+  useEffect(() => {
+    if (initialData) {
+      setForm({
+        date: initialData.date || "",
+        itemName: initialData.itemName || "",
+        price: initialData.price || "",
+        quantity: initialData.quantity || "",
+        note: initialData.note || "",
+      });
+    }
+  }, [initialData]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,27 +32,39 @@ export default function SaleForm({ refresh }) {
 
     const total = Number(form.price) * Number(form.quantity);
 
-    await addSale({
-      ...form,
-      price: Number(form.price),
-      quantity: Number(form.quantity),
-      total,
-    });
+    try {
+      if (initialData && initialData.id) {
+        // editing
+        await updateSale(initialData.id, {
+          ...form,
+          price: Number(form.price),
+          quantity: Number(form.quantity),
+          total,
+        });
+      } else {
+        // creating
+        await addSale({
+          ...form,
+          price: Number(form.price),
+          quantity: Number(form.quantity),
+          total,
+        });
+      }
 
-    setForm({
-      date: "",
-      itemName: "",
-      price: "",
-      quantity: "",
-      note: "",
-    });
-
-    refresh();
+      setForm({ date: "", itemName: "", price: "", quantity: "", note: "" });
+      if (typeof refresh === "function") refresh();
+      if (typeof onClose === "function") onClose();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to save sale. See console for details.");
+    }
   };
+
+  const isEditing = initialData && initialData.id;
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Add Sale</h3>
+      <h3>{isEditing ? "Edit Sale" : "Add Sale"}</h3>
 
       <input type="date" name="date" onChange={handleChange} value={form.date} />
       <input type="text" name="itemName" placeholder="Item" onChange={handleChange} value={form.itemName} />
@@ -47,7 +72,14 @@ export default function SaleForm({ refresh }) {
       <input type="number" name="quantity" placeholder="Qty" onChange={handleChange} value={form.quantity} />
       <input type="text" name="note" placeholder="Note" onChange={handleChange} value={form.note} />
 
-      <button>Add Sale</button>
+      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+        <button type="submit">{isEditing ? "Save" : "Add Sale"}</button>
+        {isEditing && (
+          <button type="button" onClick={() => { setForm({ date: "", itemName: "", price: "", quantity: "", note: "" }); if (typeof onClose === "function") onClose(); }}>
+            Cancel
+          </button>
+        )}
+      </div>
     </form>
   );
 }

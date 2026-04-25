@@ -13,6 +13,8 @@ export default function Home() {
   const [showSaleForm, setShowSaleForm] = useState(false);
   const [showExpensesTable, setShowExpensesTable] = useState(true);
   const [showExpenseForm, setShowExpenseForm] = useState(false);
+  const [selectedSale, setSelectedSale] = useState(null);
+  const [selectedExpense, setSelectedExpense] = useState(null);
 
   const loadData = async () => {
     const exp = await getExpenses();
@@ -63,28 +65,36 @@ export default function Home() {
         {/* Sales section */}
         {showSaleForm && (
           <div style={{ marginBottom: 12 }}>
-            <SaleForm refresh={loadData} />
+            <SaleForm
+              refresh={loadData}
+              initialData={selectedSale}
+              onClose={() => { setShowSaleForm(false); setSelectedSale(null); }}
+            />
           </div>
         )}
 
         {showSalesTable && (
           <div style={{ marginBottom: 16 }}>
             <h3 style={{ margin: "8px 0" }}>Sales</h3>
-            <SaleTable sales={sales} refresh={loadData} />
+            <SaleTable sales={sales} refresh={loadData} onEdit={(item) => { setSelectedSale(item); setShowSaleForm(true); }} />
           </div>
         )}
 
         {/* Expenses section */}
         {showExpenseForm && (
           <div style={{ marginBottom: 12 }}>
-            <ExpenseForm refresh={loadData} />
+            <ExpenseForm
+              refresh={loadData}
+              initialData={selectedExpense}
+              onClose={() => { setShowExpenseForm(false); setSelectedExpense(null); }}
+            />
           </div>
         )}
 
         {showExpensesTable && (
           <div>
             <h3 style={{ margin: "8px 0" }}>Expenses</h3>
-            <ExpenseTable expenses={expenses} refresh={loadData} />
+            <ExpenseTable expenses={expenses} refresh={loadData} onEdit={(item) => { setSelectedExpense(item); setShowExpenseForm(true); }} />
           </div>
         )}
       </div>

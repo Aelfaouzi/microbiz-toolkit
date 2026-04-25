@@ -2,10 +2,10 @@
   "expenses": [
     {
       "date": "2026-04-24",
-      "itemName": "nunchunck",
+      "itemName": "nunchuncks",
       "price": 20,
       "quantity": 2,
-      "note": " for Akram",
+      "note": " for Akram Takewondo",
       "total": 40,
       "id": "dWEz4haa3GE"
     }
@@ -13,11 +13,11 @@
   "sales": [
     {
       "date": "2026-04-24",
-      "itemName": "bjelaba",
+      "itemName": "Jellab",
       "price": 30,
-      "quantity": 2,
+      "quantity": 1,
       "note": "whole sale",
-      "total": 60,
+      "total": 30,
       "id": "9L8xw4ttrcg"
     }
   ],
