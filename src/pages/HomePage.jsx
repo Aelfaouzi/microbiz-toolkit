@@ -34,32 +34,23 @@ export default function Home() {
   return (
     <>
       <div>
-        <h2>Dashboard</h2>
 
-        <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 12 }}>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={() => setShowSalesTable((s) => !s)}>
-              {showSalesTable ? "Hide Sales" : `Show Sales (${sales.length})`}
-            </button>
-            <button onClick={() => setShowSaleForm((s) => !s)}>
-              {showSaleForm ? "Close Add Sale" : "Add Sale"}
-            </button>
+        <div className="flex flex-col sm:flex-row sm:justify-between gap-4 items-start sm:items-center mb-4">
+          <div className="flex gap-2">
+            <button onClick={() => setShowSalesTable((s) => !s)} className="px-3 py-2 rounded border ">{showSalesTable ? "Hide Sales" : `Show Sales (${sales.length})`}</button>
+            <button onClick={() => setShowSaleForm((s) => !s)} className="px-3 py-2 rounded bg-slate-900 text-white">{showSaleForm ? "Close" : "Add Sale"}</button>
           </div>
 
-          <div style={{ display: "flex", gap: 8, marginLeft: 8 }}>
-            <button onClick={() => setShowExpensesTable((s) => !s)}>
-              {showExpensesTable ? "Hide Expenses" : `Show Expenses (${expenses.length})`}
-            </button>
-            <button onClick={() => setShowExpenseForm((s) => !s)}>
-              {showExpenseForm ? "Close Add Expense" : "Add Expense"}
-            </button>
+          <div className="flex gap-2">
+            <button onClick={() => setShowExpensesTable((s) => !s)} className="px-3 py-2 rounded border ">{showExpensesTable ? "Hide Expenses" : `Show Expenses (${expenses.length})`}</button>
+            <button onClick={() => setShowExpenseForm((s) => !s)} className="px-3 py-2 rounded bg-slate-900 text-white">{showExpenseForm ? "Close" : "Add Expense"}</button>
           </div>
-        </div>
 
-        <div style={{ display: "flex", gap: 24, marginBottom: 12 }}>
-          <p style={{ margin: 0 }}>Sales: ${totalSales}</p>
-          <p style={{ margin: 0 }}>Expenses: ${totalExpenses}</p>
-          <p style={{ margin: 0 }}>Profit: ${profit}</p>
+          <div className="flex gap-6 mt-2 sm:mt-0">
+            <p className="m-0">Sales: <span className="font-semibold">${totalSales}</span></p>
+            <p className="m-0">Expenses: <span className="font-semibold">${totalExpenses}</span></p>
+            <p className="m-0">Profit: <span className="font-semibold">${profit}</span></p>
+          </div>
         </div>
 
         {/* Sales section */}

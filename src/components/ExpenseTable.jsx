@@ -1,5 +1,4 @@
 import React from "react";
-import "./tables.css";
 import { deleteExpense } from "../services/api";
 
 const currency = (v) =>
@@ -22,45 +21,39 @@ export default function ExpenseTable({ expenses = [], refresh, onEdit }) {
   };
 
   return (
-    <div className="tables-container">
-      <table className="table">
-        <thead>
+    <div className="overflow-x-auto">
+      <table className="min-w-full bg-white shadow rounded-lg overflow-hidden">
+        <thead className="bg-slate-900 text-white text-sm">
           <tr>
-            <th>Date</th>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Qty</th>
-            <th>Total</th>
-            <th>Note</th>
-            <th>Actions</th>
+            <th className="px-4 py-3 text-left">Date</th>
+            <th className="px-4 py-3 text-left">Item</th>
+            <th className="px-4 py-3 text-left">Price</th>
+            <th className="px-4 py-3 text-left">Qty</th>
+            <th className="px-4 py-3 text-left">Total</th>
+            <th className="px-4 py-3 text-left">Note</th>
+            <th className="px-4 py-3 text-left">Actions</th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="text-sm text-slate-700">
           {expenses.length === 0 && (
             <tr>
-              <td colSpan={7} className="no-data">
-                No expenses yet
-              </td>
+              <td colSpan={7} className="px-4 py-6 text-center text-slate-500">No expenses yet</td>
             </tr>
           )}
 
           {expenses.map((e, i) => (
-            <tr key={e.id || i}>
-              <td>{e.date}</td>
-              <td>{e.itemName}</td>
-              <td>{currency(e.price)}</td>
-              <td>{e.quantity}</td>
-              <td style={{ fontWeight: 600 }}>{currency(e.total)}</td>
-              <td>{e.note}</td>
-                <td>
-                  <button onClick={() => onEdit && onEdit(e)} style={{ marginRight: 8 }}>
-                    Edit
-                  </button>
-                  <button onClick={() => handleDelete(e.id)} style={{ color: "#aa1a1aff" }}>
-                    Delete
-                  </button>
-                </td>
+            <tr key={e.id || i} className={`border-b border-gray-300 ${i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}>
+              <td className="px-4 py-3">{e.date}</td>
+              <td className="px-4 py-3">{e.itemName}</td>
+              <td className="px-4 py-3">{currency(e.price)}</td>
+              <td className="px-4 py-3">{e.quantity}</td>
+              <td className="px-4 py-3 font-semibold">{currency(e.total)}</td>
+              <td className="px-4 py-3">{e.note}</td>
+              <td className="px-4 py-3">
+                <button onClick={() => onEdit && onEdit(e)} className="px-2 py-1 text-sm rounded bg-gray hover:bg-slate-200 mr-2">Edit</button>
+                <button onClick={() => handleDelete(e.id)} className="px-2 py-1 text-sm rounded text-white bg-red-600 hover:bg-red-700">Delete</button>
+              </td>
             </tr>
           ))}
         </tbody>
