@@ -1,20 +1,9 @@
 import { useEffect, useState } from "react";
 import { getExpenses, getSales } from "../services/api";
-import ExpenseForm from "../components/ExpenseForm";
-import SaleForm from "../components/SaleForm";
-import ExpenseTable from "../components/ExpenseTable";
-import SaleTable from "../components/SaleTable";
-
 
 export default function Home() {
   const [expenses, setExpenses] = useState([]);
   const [sales, setSales] = useState([]);
-  const [showSalesTable, setShowSalesTable] = useState(true);
-  const [showSaleForm, setShowSaleForm] = useState(false);
-  const [showExpensesTable, setShowExpensesTable] = useState(true);
-  const [showExpenseForm, setShowExpenseForm] = useState(false);
-  const [selectedSale, setSelectedSale] = useState(null);
-  const [selectedExpense, setSelectedExpense] = useState(null);
 
   const loadData = async () => {
     const exp = await getExpenses();
@@ -28,67 +17,58 @@ export default function Home() {
     loadData();
   }, []);
 
-    const totalExpenses = expenses.reduce((sum, e) => sum + e.total, 0);
-    const totalSales = sales.reduce((sum, s) => sum + s.total, 0);
-    const profit = totalSales - totalExpenses;
+  const totalExpenses = expenses.reduce((sum, e) => sum + e.total, 0);
+  const totalSales = sales.reduce((sum, s) => sum + s.total, 0);
+  const profit = totalSales - totalExpenses;
+
   return (
-    <>
-      <div>
+    <div>
+      <h2 className="text-2xl font-semibold mb-6">Dashboard</h2>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+        <div className="bg-white p-6 rounded-lg border border-gray-300 shadow-sm">
+          <p className="text-sm text-slate-600 mb-2">Total Sales</p>
+          <p className="text-3xl font-semibold text-slate-900">${totalSales.toFixed(2)}</p>
+        </div>
+        
+        <div className="bg-white p-6 rounded-lg border border-gray-300 shadow-sm">
+          <p className="text-sm text-slate-600 mb-2">Total Expenses</p>
+          <p className="text-3xl font-semibold text-red-600">${totalExpenses.toFixed(2)}</p>
+        </div>
+        
+        <div className="bg-white p-6 rounded-lg border border-gray-300 shadow-sm">
+          <p className="text-sm text-slate-600 mb-2">Net Profit</p>
+          <p className={`text-3xl font-semibold ${profit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+            ${profit.toFixed(2)}
+          </p>
+        </div>
+      </div>
 
-        <div className="flex flex-col sm:flex-row sm:justify-between gap-4 items-start sm:items-center mb-4">
-          <div className="flex gap-2">
-            <button onClick={() => setShowSalesTable((s) => !s)} className="px-3 py-2 rounded border ">{showSalesTable ? "Hide Sales" : `Show Sales (${sales.length})`}</button>
-            <button onClick={() => setShowSaleForm((s) => !s)} className="px-3 py-2 rounded bg-slate-900 text-white">{showSaleForm ? "Close" : "Add Sale"}</button>
+      <div className="bg-slate-50 p-6 rounded-lg border border-gray-300">
+        <h3 className="text-lg font-semibold mb-4">Quick Stats</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div>
+            <p className="text-sm text-slate-600">Sales Records</p>
+            <p className="text-2xl font-semibold text-slate-900">{sales.length}</p>
           </div>
-
-          <div className="flex gap-2">
-            <button onClick={() => setShowExpensesTable((s) => !s)} className="px-3 py-2 rounded border ">{showExpensesTable ? "Hide Expenses" : `Show Expenses (${expenses.length})`}</button>
-            <button onClick={() => setShowExpenseForm((s) => !s)} className="px-3 py-2 rounded bg-slate-900 text-white">{showExpenseForm ? "Close" : "Add Expense"}</button>
+          <div>
+            <p className="text-sm text-slate-600">Expense Records</p>
+            <p className="text-2xl font-semibold text-slate-900">{expenses.length}</p>
           </div>
-
-          <div className="flex gap-6 mt-2 sm:mt-0">
-            <p className="m-0">Sales: <span className="font-semibold">${totalSales}</span></p>
-            <p className="m-0">Expenses: <span className="font-semibold">${totalExpenses}</span></p>
-            <p className="m-0">Profit: <span className="font-semibold">${profit}</span></p>
+          <div>
+            <p className="text-sm text-slate-600">Avg Sale</p>
+            <p className="text-2xl font-semibold text-slate-900">
+              ${sales.length > 0 ? (totalSales / sales.length).toFixed(2) : '0.00'}
+            </p>
+          </div>
+          <div>
+            <p className="text-sm text-slate-600">Avg Expense</p>
+            <p className="text-2xl font-semibold text-slate-900">
+              ${expenses.length > 0 ? (totalExpenses / expenses.length).toFixed(2) : '0.00'}
+            </p>
           </div>
         </div>
-
-        {/* Sales section */}
-        {showSaleForm && (
-          <div style={{ marginBottom: 12 }}>
-            <SaleForm
-              refresh={loadData}
-              initialData={selectedSale}
-              onClose={() => { setShowSaleForm(false); setSelectedSale(null); }}
-            />
-          </div>
-        )}
-
-        {showSalesTable && (
-          <div style={{ marginBottom: 16 }}>
-            <h3 style={{ margin: "8px 0" }}>Sales</h3>
-            <SaleTable sales={sales} refresh={loadData} onEdit={(item) => { setSelectedSale(item); setShowSaleForm(true); }} />
-          </div>
-        )}
-
-        {/* Expenses section */}
-        {showExpenseForm && (
-          <div style={{ marginBottom: 12 }}>
-            <ExpenseForm
-              refresh={loadData}
-              initialData={selectedExpense}
-              onClose={() => { setShowExpenseForm(false); setSelectedExpense(null); }}
-            />
-          </div>
-        )}
-
-        {showExpensesTable && (
-          <div>
-            <h3 style={{ margin: "8px 0" }}>Expenses</h3>
-            <ExpenseTable expenses={expenses} refresh={loadData} onEdit={(item) => { setSelectedExpense(item); setShowExpenseForm(true); }} />
-          </div>
-        )}
       </div>
-    </>
+    </div>
   );
 }

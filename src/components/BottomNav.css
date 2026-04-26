@@ -1,0 +1,69 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #d1d5db;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  height: 70px;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+.bottom-nav-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #6b7280;
+  transition: color 0.3s, background-color 0.3s;
+  border-top: 3px solid transparent;
+}
+
+.bottom-nav-tab:hover {
+  background-color: #f8fafc;
+  color: #374151;
+}
+
+.bottom-nav-tab.active {
+  color: #0f172a;
+  border-top-color: #0f172a;
+  background-color: #f8fafc;
+  font-weight: 600;
+}
+
+.bottom-nav-icon {
+  font-size: 1.5rem;
+}
+
+.bottom-nav-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Adjust main content to not overlap with bottom nav */
+body {
+  padding-bottom: 70px;
+}
+
+/* Responsive: hide labels on very small screens */
+@media (max-width: 480px) {
+  .bottom-nav-label {
+    display: none;
+  }
+
+  .bottom-nav {
+    height: 60px;
+  }
+
+  body {
+    padding-bottom: 60px;
+  }
+}
