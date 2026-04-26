@@ -9,6 +9,7 @@
     "start": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^7.15.10",
     "axios": "^1.15.2",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",

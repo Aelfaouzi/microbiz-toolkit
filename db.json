@@ -10,22 +10,13 @@
       "id": "dWEz4haa3GE"
     },
     {
-      "date": "",
-      "itemName": "",
-      "price": 0,
-      "quantity": 0,
-      "note": "",
-      "total": 0,
-      "id": "FtnYsIaw_Oo"
-    },
-    {
-      "date": "",
-      "itemName": "",
-      "price": 0,
-      "quantity": 0,
-      "note": "",
-      "total": 0,
-      "id": "n4XnQgvQly4"
+      "date": "2026-04-10",
+      "itemName": "Jellab",
+      "price": 40,
+      "quantity": 2,
+      "note": "whole sale",
+      "total": 80,
+      "id": "L9RU7ToHt5w"
     }
   ],
   "sales": [
@@ -37,15 +28,6 @@
       "note": "whole sale",
       "total": 30,
       "id": "9L8xw4ttrcg"
-    },
-    {
-      "date": "",
-      "itemName": "",
-      "price": 0,
-      "quantity": 0,
-      "note": "",
-      "total": 0,
-      "id": "EouCS07YUiQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
