@@ -6,7 +6,9 @@ export default function BottomNav() {
 
   const tabs = [
     { label: 'Dashboard', path: '/', icon: '📊' },
+    { label: 'Inventory', path: '/inventory', icon: '📦' },
     { label: 'Sales', path: '/sales', icon: '💰' },
+    { label: 'Returns', path: '/returns-defects', icon: '↩️' },
     { label: 'Expenses', path: '/expenses', icon: '💸' },
   ];
 

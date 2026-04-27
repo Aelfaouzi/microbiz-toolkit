@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/HomePage';
 import SalesPage from './pages/SalesPage';
 import ExpensesPage from './pages/ExpensesPage';
+import InventoryPage from './pages/InventoryPage';
+import ReturnsDefectsPage from './pages/ReturnsDefectsPage';
 import BottomNav from './components/BottomNav';
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/sales" element={<SalesPage />} />
             <Route path="/expenses" element={<ExpensesPage />} />
+            <Route path="/inventory" element={<InventoryPage />} />
+            <Route path="/returns-defects" element={<ReturnsDefectsPage />} />
           </Routes>
         </div>
         <BottomNav />
