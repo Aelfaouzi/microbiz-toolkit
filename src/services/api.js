@@ -17,6 +17,20 @@ export const updateSale = (id, data) => API.put(`/sales/${id}`, data);
 // Inventory
 export const getInventory = () => API.get("/inventory");
 export const addInventoryItem = (data) => API.post("/inventory", data);
+export const updateInventoryItem = (id, data) => API.put(`/inventory/${id}`, data);
+export const deleteInventoryItem = (id) => API.delete(`/inventory/${id}`);
+
+// Returns (Phase 2)
+export const getReturns = () => API.get("/returns");
+export const addReturn = (data) => API.post("/returns", data);
+export const updateReturn = (id, data) => API.put(`/returns/${id}`, data);
+export const deleteReturn = (id) => API.delete(`/returns/${id}`);
+
+// Defects (Phase 2)
+export const getDefects = () => API.get("/defects");
+export const addDefect = (data) => API.post("/defects", data);
+export const updateDefect = (id, data) => API.put(`/defects/${id}`, data);
+export const deleteDefect = (id) => API.delete(`/defects/${id}`);
 
 // Customers
 export const getCustomers = () => API.get("/customers");

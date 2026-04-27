@@ -63,12 +63,12 @@ export default function ExpenseForm({ refresh, initialData = null, onClose }) {
     <form onSubmit={handleSubmit} className="bg-white p-4  text-black rounded shadow">
       <h3 className="text-lg font-medium mb-3">{isEditing ? "Edit Expense" : "Add Expense"}</h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <input className="border px-2 py-2 rounded" type="date" name="date" onChange={handleChange} value={form.date} />
-        <input className="border px-2 py-2 rounded" type="text" name="itemName" placeholder="Item" onChange={handleChange} value={form.itemName} />
-        <input className="border px-2 py-2 rounded" type="number" name="price" placeholder="Price" onChange={handleChange} value={form.price} />
-        <input className="border px-2 py-2 rounded" type="number" name="quantity" placeholder="Qty" onChange={handleChange} value={form.quantity} />
-        <input className="border px-2 py-2 rounded col-span-2" type="text" name="note" placeholder="Note" onChange={handleChange} value={form.note} />
+      <div className="flex flex-col gap-2 space-y-4 expense-form">
+        <input className="border px-2 py-2 rounded w-full" type="date" name="date" placeholder="Date" onChange={handleChange} value={form.date} />
+        <input className="border px-2 py-2 rounded w-full" type="text" name="itemName" placeholder="Item Name" onChange={handleChange} value={form.itemName} />
+        <input className="border px-2 py-2 rounded w-full" type="number" name="price" placeholder="Price" onChange={handleChange} value={form.price} />
+        <input className="border px-2 py-2 rounded w-full" type="number" name="quantity" placeholder="Quantity" onChange={handleChange} value={form.quantity} />
+        <textarea className="border px-2 py-2 rounded w-full" name="note" placeholder="Note" rows="3" onChange={handleChange} value={form.note}></textarea>
       </div>
 
       <div className="flex items-center gap-2 mt-3">

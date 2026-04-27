@@ -32,6 +32,8 @@ export default function SaleTable({ sales = [], refresh, onEdit } ) {
             <th className="px-4 py-3 text-left">Item</th>
             <th className="px-4 py-3 text-left">Price</th>
             <th className="px-4 py-3 text-left">Qty</th>
+            <th className="px-4 py-3 text-left">Size</th>
+            <th className="px-4 py-3 text-left">Color</th>
             <th className="px-4 py-3 text-left">Total</th>
             <th className="px-4 py-3 text-left">Note</th>
             <th className="px-4 py-3 text-left">Actions</th>
@@ -41,7 +43,7 @@ export default function SaleTable({ sales = [], refresh, onEdit } ) {
         <tbody className="text-sm text-slate-700">
           {sales.length === 0 && (
             <tr>
-              <td colSpan={7} className="px-4 py-6 text-center text-slate-500">No sales yet</td>
+              <td colSpan={9} className="px-4 py-6 text-center text-slate-500">No sales yet</td>
             </tr>
           )}
 
@@ -51,6 +53,8 @@ export default function SaleTable({ sales = [], refresh, onEdit } ) {
               <td className="px-4 py-3">{s.itemName}</td>
               <td className="px-4 py-3">{currency(s.price)}</td>
               <td className="px-4 py-3">{s.quantity}</td>
+              <td className="px-4 py-3">{s.size}</td>
+              <td className="px-4 py-3">{s.color}</td>
               <td className="px-4 py-3 font-semibold">{currency(s.total)}</td>
               <td className="px-4 py-3">{s.note}</td>
               <td className="px-4 py-3">
@@ -67,6 +71,8 @@ export default function SaleTable({ sales = [], refresh, onEdit } ) {
             <td />
             <td />
             <td className="px-4 py-3 font-semibold">{totalQty}</td>
+            <td />
+            <td />
             <td className="px-4 py-3 font-semibold">{currency(totalAmount)}</td>
             <td />
             <td />

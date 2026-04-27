@@ -2,21 +2,30 @@
   "expenses": [
     {
       "date": "2026-04-24",
-      "itemName": "nunchuncks",
+      "itemName": "brodery",
       "price": 20,
       "quantity": 2,
-      "note": " for Akram Takewondo",
+      "note": " ",
       "total": 40,
       "id": "dWEz4haa3GE"
     },
     {
       "date": "2026-04-10",
-      "itemName": "Jellab",
-      "price": 40,
-      "quantity": 2,
+      "itemName": "emplyees",
+      "price": 500,
+      "quantity": 10,
       "note": "whole sale",
-      "total": 80,
+      "total": 5000,
       "id": "L9RU7ToHt5w"
+    },
+    {
+      "date": "2026-04-26",
+      "itemName": "fabric",
+      "price": 30,
+      "quantity": 1,
+      "note": "Sfifa",
+      "total": 30,
+      "id": "N6rcziu2pGw"
     }
   ],
   "sales": [
@@ -27,7 +36,66 @@
       "quantity": 1,
       "note": "whole sale",
       "total": 30,
-      "id": "9L8xw4ttrcg"
+      "id": "9L8xw4ttrcg",
+      "saleType": "wholesale"
+    },
+    {
+      "date": "",
+      "itemName": "Jellab",
+      "price": 50,
+      "quantity": 3,
+      "note": "whole sale",
+      "total": 150,
+      "id": "_x-KaYrsmOU"
+    },
+    {
+      "date": "",
+      "itemName": "pijama",
+      "price": 30,
+      "quantity": 3,
+      "size": "3xl",
+      "color": "blue",
+      "note": "for testing",
+      "total": 90,
+      "id": "10QgVUNOhMA"
+    }
+  ],
+  "returns": [
+    {
+      "id": "ret1",
+      "saleId": "9L8xw4ttrcg",
+      "clothingType": "Jellab",
+      "size": "md",
+      "quantity": 1,
+      "originalPrice": 30,
+      "returnDate": "2026-04-25",
+      "reason": "Customer satisfaction",
+      "condition": "good",
+      "refundAmount": 30
+    }
+  ],
+  "defects": [
+    {
+      "id": "def1",
+      "clothingType": "Jellab",
+      "size": "lg",
+      "quantity": 2,
+      "defectType": "stitching issue",
+      "discountedPrice": 15,
+      "originalPrice": 30,
+      "dateIdentified": "2026-04-23",
+      "status": "available"
+    }
+  ],
+  "inventory": [
+    {
+      "id": "inv2",
+      "itemName": "fabric",
+      "quantity": 2,
+      "minStockLevel": 3,
+      "price": 1000,
+      "supplier": "casaNova",
+      "lastRestocked": "2026-04-15"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
